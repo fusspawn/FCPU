@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace FCPU.Instructions
 {
-    public class POP 
+    public class PUSH
         : FCPUInstruction
     {
-        public POP() {
-            this.OpCode = 0x01;
+        public PUSH()
+        {
+            this.OpCode = 0x02;
             this.ArgCount = 0;
-            this.InsName = "POP";
-            this.DocString = "POP: Pops the top value of the stack and puts it in r0";
+            this.InsName = "PUSH";
+            this.DocString = "PUSH: Push's value in r0 to stack";
         }
 
         public override void Execute(FCPUState State)
         {
-            int Value = State.Stack.Pop();
-            State.SetRegisterValue(0, Value);
-
+            int Value = State.GetRegisterValue(0);
+            State.Stack.Push(Value);
             base.Execute(State);
         }
     }

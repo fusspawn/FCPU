@@ -10,29 +10,36 @@ namespace FCPU
     {
         public int IP = 0;
         public int[] Registers = new int[5];
-        public int[] Memory = new int[512];
-
+        public FObject[] Memory = new FObject[512];
         public Stack<int> Stack = new Stack<int>();
 
-        public int GetNextOpcode() {
-            IP += 1;
-            return Memory[IP];
+        public FCPUState() {
+            for (int i = 0; i < Memory.Length; i++)
+                Memory[i] = new FObject(false, 0x00, this);
         }
 
-        public int GetRegister(int Index) {
+        public int GetNextOpcode() {
+            return Memory[IP].Value;
+        }
+
+        public int GetRegisterValue(int Index) {
             return Registers[Index];
         }
 
-        public int GetRegister(string Name) {
+        internal void SetRegisterValue(int index, int value)
+        {
+            Registers[index] = value;
+        }
+
+        public int GetRegisterValue(string Name) {
             switch (Name) {
-                case "r0": return GetRegister(0);
-                case "r1": return GetRegister(1);
-                case "r2": return GetRegister(2);
-                case "r3": return GetRegister(3);
-                case "r4": return GetRegister(4);
+                case "r0": return GetRegisterValue(0);
+                case "r1": return GetRegisterValue(1);
+                case "r2": return GetRegisterValue(2);
+                case "r3": return GetRegisterValue(3);
+                case "r4": return GetRegisterValue(4);
                 default:
-                    throw new Exception("Invalid Register Exception");
-                              
+                    throw new Exception("Invalid Register Exception");                              
             }
         }
 
@@ -40,7 +47,7 @@ namespace FCPU
             Stack.Push(Value);
         }
 
-        public int PopStack(int Value) {
+        public int PopStack() {
             return Stack.Pop();
         }
     }

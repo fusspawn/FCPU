@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FCPU.Instructions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,18 @@ namespace FCPU
 {
     public class FCPU
     {
-        FCPUState State;
-        Dictionary<int, FCPUInstruction> OpCodes;
+        public FCPUState State;
+        public Dictionary<int, FCPUInstruction> OpCodes;
 
         public FCPU(FCPUState State) {
             this.State = State;
             this.OpCodes = new Dictionary<int, FCPUInstruction>();
+
+            RegisterInstruction(new NOP());
+            RegisterInstruction(new ADD());
+            RegisterInstruction(new MOV());
+            RegisterInstruction(new POP());
+            RegisterInstruction(new PUSH());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {
@@ -32,7 +39,17 @@ namespace FCPU
             else {
                 OpCodes[Instruction].LoadArgs(State);
                 OpCodes[Instruction].Execute(State);
+                State.IP += OpCodes[Instruction].ArgCount + 1;
             }
-        }        
+        }
+
+        public FCPUInstruction GetInstructionByName(string Name) {
+            return (from p in OpCodes where p.Value.InsName == Name select p.Value).FirstOrDefault();
+        }
+
+        public void DumpStateToConsole() {
+            Console.WriteLine($"IP: {State.IP}, @r0: {State.GetRegisterValue(0)}  @r1: {State.GetRegisterValue(1)} @r2: {State.GetRegisterValue(2)} @r3: {State.GetRegisterValue(3)} @r4: {State.GetRegisterValue(4)}");
+            Console.WriteLine($"Current Instruction at IP: {OpCodes[State.GetNextOpcode()].InsName}");
+        } 
     }
 }

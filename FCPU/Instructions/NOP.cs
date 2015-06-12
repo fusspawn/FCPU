@@ -12,6 +12,8 @@ namespace FCPU.Instructions
         public NOP() {
             OpCode = 0x00;
             ArgCount = 0;
+            InsName = "NOP";
+            DocString = "NOP: No Operation. Waste a cycle doing nothing";
         }
 
         public override void Execute(FCPUState State)

@@ -20,7 +20,6 @@ namespace FCPU.Instructions
         {
             int Value = State.Stack.Pop();
             State.SetRegisterValue(0, Value);
-
             base.Execute(State);
         }
     }

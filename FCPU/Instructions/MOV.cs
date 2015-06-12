@@ -21,7 +21,9 @@ namespace FCPU.Instructions
         {
             FObject Source = State.Memory[State.IP + 1];
             FObject Dest = State.Memory[State.IP + 2];
-            Source.Value = Dest.Value;
+
+            Console.WriteLine($"Mov: Source: {((Source.IsRegister == true) ? Source.RegisterName : Source.Value.ToString())}  Dest: {((Dest.IsRegister == true) ? Dest.RegisterName : Dest.Value.ToString())}");
+            State.SetRegisterValue(Util.RegisterIndexFromName(Dest.RegisterName), Source.Value);
             base.Execute(State);
         }
 
@@ -34,15 +36,15 @@ namespace FCPU.Instructions
 
             FObject Source;
             if (Util.IsRegister(Args[0]))
-                Source = new FObject(true, Util.RegisterIndexFromName(Args[0]), State);
+                Source = new FObject(true, Util.RegisterIndexFromName(Args[0]), State, State.IP + 1);
             else
-                Source = new FObject(false, int.Parse(Args[0]), State);
+                Source = new FObject(false, int.Parse(Args[0]), State, State.IP + 1);
 
             if (!Util.IsRegister(Args[1]))
                 throw new Exception("Invalid Parse");
 
-            FObject Dest = new FObject(true, Util.RegisterIndexFromName(Args[1]), State);
-            State.Memory[State.IP] = new FObject(false, this.OpCode, State);
+            FObject Dest = new FObject(true, Util.RegisterIndexFromName(Args[1]), State, State.IP + 2);
+            State.Memory[State.IP] = new FObject(false, this.OpCode, State, State.IP);
             State.Memory[State.IP + 1] = Source;
             State.Memory[State.IP + 2] = Dest;
             State.IP += this.ArgCount + 1;

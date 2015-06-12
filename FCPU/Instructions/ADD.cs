@@ -26,7 +26,7 @@ namespace FCPU.Instructions
 
         public override void Parse(FCPUState State, string[] Args)
         {
-            State.Memory[State.IP] = new FObject(false, this.OpCode, State);
+            State.Memory[State.IP] = new FObject(false, this.OpCode, State, State.IP);
             State.IP += this.ArgCount + 1;            
         }
     }

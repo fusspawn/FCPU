@@ -11,6 +11,7 @@ namespace FCPU
         public int _Value;
         public bool IsRegister;
         public FCPUState CPUState;
+        public int Ptr;
 
         public int Value
         {
@@ -29,10 +30,21 @@ namespace FCPU
             }
         }
 
-        public FObject(bool Reg, int Val, FCPUState CPU) {
+        public string RegisterName {
+            get {
+                return "@r" + _Value;
+            }
+        }
+
+        
+
+        public FObject(bool Reg, int Val, FCPUState CPU, int MemoryLoc) {
             IsRegister = Reg;
             _Value = Val;
             CPUState = CPU;
+            Ptr = MemoryLoc;
         }
+
+
     }
 }

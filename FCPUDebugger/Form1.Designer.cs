@@ -36,6 +36,8 @@
             this.ResetCPUButton = new System.Windows.Forms.Button();
             this.MemoryDisplay = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.ConsoleListBox = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CompileButton
@@ -67,7 +69,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(422, 57);
+            this.label1.Location = new System.Drawing.Point(425, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 3;
@@ -98,7 +100,7 @@
             this.MemoryDisplay.FormattingEnabled = true;
             this.MemoryDisplay.Location = new System.Drawing.Point(420, 238);
             this.MemoryDisplay.Name = "MemoryDisplay";
-            this.MemoryDisplay.Size = new System.Drawing.Size(419, 355);
+            this.MemoryDisplay.Size = new System.Drawing.Size(419, 199);
             this.MemoryDisplay.TabIndex = 6;
             // 
             // label2
@@ -110,11 +112,32 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Memory";
             // 
+            // ConsoleListBox
+            // 
+            this.ConsoleListBox.BackColor = System.Drawing.SystemColors.InfoText;
+            this.ConsoleListBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.ConsoleListBox.FormattingEnabled = true;
+            this.ConsoleListBox.Location = new System.Drawing.Point(420, 472);
+            this.ConsoleListBox.Name = "ConsoleListBox";
+            this.ConsoleListBox.Size = new System.Drawing.Size(419, 121);
+            this.ConsoleListBox.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(425, 456);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Console";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 605);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.ConsoleListBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.MemoryDisplay);
             this.Controls.Add(this.ResetCPUButton);
@@ -125,6 +148,7 @@
             this.Controls.Add(this.CompileButton);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,6 +164,8 @@
         private System.Windows.Forms.Button ResetCPUButton;
         private System.Windows.Forms.ListBox MemoryDisplay;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox ConsoleListBox;
+        private System.Windows.Forms.Label label3;
     }
 }
 

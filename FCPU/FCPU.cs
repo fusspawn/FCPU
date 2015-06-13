@@ -11,9 +11,11 @@ namespace FCPU
     {
         public FCPUState State;
         public static Dictionary<int, FCPUInstruction> OpCodes;
+        public static Dictionary<string, int> JumpTable;
 
         public FCPU(FCPUState State) {
             this.State = State;
+            JumpTable = new Dictionary<string, int>();
             OpCodes = new Dictionary<int, FCPUInstruction>();
             RegisterInstruction(new NOP());
             RegisterInstruction(new MOV());
@@ -26,6 +28,7 @@ namespace FCPU
             RegisterInstruction(new READ_LOC());
             RegisterInstruction(new WRITE_LOC());
             RegisterInstruction(new DEBUG());
+            RegisterInstruction(new CAST_CHAR());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {
@@ -37,14 +40,22 @@ namespace FCPU
         }
 
         public void ExecuteStep() {
-            int Instruction = State.GetNextOpcode();
-            if (!OpCodes.ContainsKey(Instruction)) {
-                throw new Exception("Invalid Opcode");
+            try
+            {
+                int Instruction = State.GetNextOpcode();
+                if (!OpCodes.ContainsKey(Instruction))
+                {
+                    throw new Exception("Invalid Opcode");
+                }
+                else
+                {
+                    OpCodes[Instruction].LoadArgs(State);
+                    OpCodes[Instruction].Execute(State);
+                    State.IP += OpCodes[Instruction].ArgCount + 1;
+                }
             }
-            else {
-                OpCodes[Instruction].LoadArgs(State);
-                OpCodes[Instruction].Execute(State);
-                State.IP += OpCodes[Instruction].ArgCount + 1;
+            catch (Exception E) {
+                Console.WriteLine("Runtime Exception: " + E.Message);
             }
         }
 

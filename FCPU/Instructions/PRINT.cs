@@ -20,7 +20,7 @@ namespace FCPU.Instructions
         {
             ConsoleColor Old = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write((char)State.GetRegisterValue(0));
+            Console.WriteLine((char)State.GetRegisterValue(0));
             Console.ForegroundColor = Old;
         }
 

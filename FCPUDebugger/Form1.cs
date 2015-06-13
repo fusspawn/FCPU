@@ -26,6 +26,7 @@ namespace FCPUDebugger
             CPU.State = new FCPUState();
             BasicParser.LoadCode(CPU, SourceCode.Text);
             UpdateDisplays();
+            ConsoleListBox.Items.Clear();
         }
 
         private void UpdateDisplays()
@@ -34,7 +35,13 @@ namespace FCPUDebugger
             MemoryDisplay.Items.Clear();
 
             RegisterListBox.Items.Add($"IP: {CPU.State.IP}");
-            RegisterListBox.Items.Add($"NextInstruction: {FCPU.FCPU.OpCodes[CPU.State.GetNextOpcode()].InsName}");
+            try
+            {
+                RegisterListBox.Items.Add($"NextInstruction: {FCPU.FCPU.OpCodes[CPU.State.GetNextOpcode()].InsName}");
+            }
+            catch (Exception E) {
+                RegisterListBox.Items.Add($"NextInstruction: Unknown.. Value: {CPU.State.GetNextOpcode()}");
+            }
             for (int i = 0; i < 5; i++) {
                 RegisterListBox.Items.Add($"@r{i}: {CPU.State.GetRegisterValue(i)}");
             }
@@ -50,12 +57,19 @@ namespace FCPUDebugger
         {
             CPU.State.IP = 0;
             UpdateDisplays();
+            ConsoleListBox.Items.Clear();
         }
 
         private void StepCPUButton_Click(object sender, EventArgs e)
         {
             CPU.ExecuteStep();
             UpdateDisplays();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Console.SetOut(new ListBoxWriter(ConsoleListBox));
+            ConsoleListBox.Items.Clear();
         }
     }
 }

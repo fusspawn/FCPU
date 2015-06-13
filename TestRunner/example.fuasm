@@ -1,5 +1,9 @@
-﻿DEBUG
-LOAD_STR HelloWorld
-DEBUG
+﻿MOV 2 @r0
+MOV 2 @r1
+ADD
+CAST_CHAR
+MOV @r1 @r2
+LOAD_STR Done..Result: 
 PRINT_STR
-DEBUG
+MOV @r2 @r0
+PRINT

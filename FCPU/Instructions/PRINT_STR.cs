@@ -21,12 +21,14 @@ namespace FCPU.Instructions
         {
             int Length = State.GetRegisterValue(0);
             int Start = State.GetRegisterValue(1);
+            var S = new StringBuilder();
 
             for (int i = 0; i < Length; i++) {
-                Console.Write((char)State.Memory[Start + i].Value);
+               S.Append((char)State.Memory[Start + i].Value);
             }
 
-            State.IP += 1;
+            Console.WriteLine(S.ToString());
+            State.IP = Start + Length + 1;
         }
 
         public override void Parse(FCPUState State, string[] Args)

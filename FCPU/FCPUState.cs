@@ -23,14 +23,14 @@ namespace FCPU
         }
 
         public int GetRegisterValue(int Index) {
-            Console.WriteLine("Read Value: " + Registers[Index] + " from register: @r" + Index);
+            //Console.WriteLine("Read Value: " + Registers[Index] + " from register: @r" + Index);
             return Registers[Index];
         }
 
         internal void SetRegisterValue(int index, int value)
         {
             Registers[index] = value;
-            Console.WriteLine("Wrote Value: " + value + " to register: @r" + index);
+            //Console.WriteLine("Wrote Value: " + value + " to register: @r" + index);
         }
 
         public int GetRegisterValue(string Name) {

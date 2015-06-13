@@ -15,12 +15,14 @@ namespace FCPU
         public FCPU(FCPUState State) {
             this.State = State;
             this.OpCodes = new Dictionary<int, FCPUInstruction>();
-
             RegisterInstruction(new NOP());
-            RegisterInstruction(new ADD());
             RegisterInstruction(new MOV());
-            RegisterInstruction(new POP());
-            RegisterInstruction(new PUSH());
+            RegisterInstruction(new ADD());
+            RegisterInstruction(new DIV());
+            RegisterInstruction(new MUL());
+            RegisterInstruction(new PRINT());
+            RegisterInstruction(new LOAD_STR());
+            RegisterInstruction(new PRINT_STR());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {

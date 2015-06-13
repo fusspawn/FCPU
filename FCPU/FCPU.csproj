@@ -45,12 +45,16 @@
     <Compile Include="FCPUInstruction.cs" />
     <Compile Include="FCPUState.cs" />
     <Compile Include="FObject.cs" />
+    <Compile Include="Instructions\DIV.cs" />
+    <Compile Include="Instructions\WRITE_LOC.cs" />
+    <Compile Include="Instructions\READ_LOC.cs" />
+    <Compile Include="Instructions\PRINT_STR.cs" />
+    <Compile Include="Instructions\MUL.cs" />
     <Compile Include="Instructions\ADD.cs" />
-    <Compile Include="Instructions\CPY.cs" />
     <Compile Include="Instructions\MOV.cs" />
+    <Compile Include="Instructions\LOAD_STR.cs" />
+    <Compile Include="Instructions\PRINT.cs" />
     <Compile Include="Instructions\NOP.cs" />
-    <Compile Include="Instructions\POP.cs" />
-    <Compile Include="Instructions\PUSH.cs" />
     <Compile Include="Instructions\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace FCPU.Instructions
 {
-    public class ADD
+    public class DIV
         : FCPUInstruction
     {
-        public ADD()
+        public DIV()
         {
-            OpCode = 0x02;
+            OpCode = 0x03;
             ArgCount = 0;
-            InsName = "ADD";
-            DocString = "ADD: add the first two values on the stack. result goes in r0";
+            InsName = "DIV";
+            DocString = "DIV: add the first two values on the stack. result goes in r0";
         }
 
         public override void Execute(FCPUState State)
         {
             int A = State.GetRegisterValue(0);
             int B = State.GetRegisterValue(1);
-            State.SetRegisterValue(0, A + B);
+            State.SetRegisterValue(0, A / B);
         }
 
         public override void Parse(FCPUState State, string[] Args)

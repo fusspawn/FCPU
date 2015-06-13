@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public MOV()
         {
-            this.OpCode = 0x03;
+            this.OpCode = 0x01;
             this.ArgCount = 2;
             this.InsName = "MOV";
             this.DocString = "MOV val register: move value to register";
@@ -22,7 +22,7 @@ namespace FCPU.Instructions
             FObject Source = State.Memory[State.IP + 1];
             FObject Dest = State.Memory[State.IP + 2];
 
-            Console.WriteLine($"Mov: Source: {((Source.IsRegister == true) ? Source.RegisterName : Source.Value.ToString())}  Dest: {((Dest.IsRegister == true) ? Dest.RegisterName : Dest.Value.ToString())}");
+           // Console.WriteLine($"Mov: Source: {((Source.IsRegister == true) ? Source.RegisterName : Source.Value.ToString())}  Dest: {((Dest.IsRegister == true) ? Dest.RegisterName : Dest.Value.ToString())}");
             State.SetRegisterValue(Util.RegisterIndexFromName(Dest.RegisterName), Source.Value);
             base.Execute(State);
         }

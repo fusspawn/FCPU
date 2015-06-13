@@ -6,28 +6,29 @@ using System.Threading.Tasks;
 
 namespace FCPU.Instructions
 {
-    public class ADD
+    public class PRINT 
         : FCPUInstruction
     {
-        public ADD()
-        {
-            OpCode = 0x02;
+        public PRINT() {
+            OpCode = 0x05;
             ArgCount = 0;
-            InsName = "ADD";
-            DocString = "ADD: add the first two values on the stack. result goes in r0";
+            InsName = "PRINT";
+            DocString = "PRINT: Print the character in @r0 to the console";
         }
 
         public override void Execute(FCPUState State)
         {
-            int A = State.GetRegisterValue(0);
-            int B = State.GetRegisterValue(1);
-            State.SetRegisterValue(0, A + B);
+            ConsoleColor Old = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write((char)State.GetRegisterValue(0));
+            Console.ForegroundColor = Old;
         }
 
         public override void Parse(FCPUState State, string[] Args)
         {
             State.Memory[State.IP] = new FObject(false, this.OpCode, State, State.IP);
-            State.IP += this.ArgCount + 1;            
+            State.IP += 1;
+            base.Parse(State, Args);
         }
     }
 }

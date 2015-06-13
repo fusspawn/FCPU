@@ -6,28 +6,29 @@ using System.Threading.Tasks;
 
 namespace FCPU.Instructions
 {
-    public class ADD
+    public class WRITE_LOC
         : FCPUInstruction
     {
-        public ADD()
+        public WRITE_LOC()
         {
-            OpCode = 0x02;
+            OpCode = 0x07;
             ArgCount = 0;
-            InsName = "ADD";
-            DocString = "ADD: add the first two values on the stack. result goes in r0";
+            InsName = "WRITE_LOC";
+            DocString = "WRITE_LOC: write value stored in @r0 to memory loc stored in @r1";
         }
 
         public override void Execute(FCPUState State)
         {
-            int A = State.GetRegisterValue(0);
-            int B = State.GetRegisterValue(1);
-            State.SetRegisterValue(0, A + B);
+            int Ptr = State.GetRegisterValue(1);
+            int ValAtPtr = State.GetRegisterValue(0);
+            State.Memory[Ptr] = new FObject(false, ValAtPtr, State, Ptr);
+            State.IP += 1;
         }
 
         public override void Parse(FCPUState State, string[] Args)
         {
             State.Memory[State.IP] = new FObject(false, this.OpCode, State, State.IP);
-            State.IP += this.ArgCount + 1;            
+            State.IP += 1;
         }
     }
 }

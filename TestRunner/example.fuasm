@@ -1,4 +1,5 @@
-﻿MOV 2 @r0
-MOV @r0 @r1
-ADD
-
+﻿DEBUG
+LOAD_STR HelloWorld
+DEBUG
+PRINT_STR
+DEBUG

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCPU", "FCPU\FCPU.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunner", "TestRunner\TestRunner.csproj", "{7AB06533-0C6F-4133-9174-3C44AC2D9F49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCPUDebugger", "FCPUDebugger\FCPUDebugger.csproj", "{B665D43D-F096-481D-A922-499F5971CF44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7AB06533-0C6F-4133-9174-3C44AC2D9F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB06533-0C6F-4133-9174-3C44AC2D9F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB06533-0C6F-4133-9174-3C44AC2D9F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B665D43D-F096-481D-A922-499F5971CF44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B665D43D-F096-481D-A922-499F5971CF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B665D43D-F096-481D-A922-499F5971CF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B665D43D-F096-481D-A922-499F5971CF44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

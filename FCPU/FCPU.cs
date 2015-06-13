@@ -10,11 +10,11 @@ namespace FCPU
     public class FCPU
     {
         public FCPUState State;
-        public Dictionary<int, FCPUInstruction> OpCodes;
+        public static Dictionary<int, FCPUInstruction> OpCodes;
 
         public FCPU(FCPUState State) {
             this.State = State;
-            this.OpCodes = new Dictionary<int, FCPUInstruction>();
+            OpCodes = new Dictionary<int, FCPUInstruction>();
             RegisterInstruction(new NOP());
             RegisterInstruction(new MOV());
             RegisterInstruction(new ADD());
@@ -23,6 +23,9 @@ namespace FCPU
             RegisterInstruction(new PRINT());
             RegisterInstruction(new LOAD_STR());
             RegisterInstruction(new PRINT_STR());
+            RegisterInstruction(new READ_LOC());
+            RegisterInstruction(new WRITE_LOC());
+            RegisterInstruction(new DEBUG());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {
@@ -49,7 +52,7 @@ namespace FCPU
             return (from p in OpCodes where p.Value.InsName == Name select p.Value).FirstOrDefault();
         }
 
-        public void DumpStateToConsole() {
+        public static void DumpStateToConsole(FCPUState State) {
             Console.WriteLine($"IP: {State.IP}, @r0: {State.GetRegisterValue(0)}  @r1: {State.GetRegisterValue(1)} @r2: {State.GetRegisterValue(2)} @r3: {State.GetRegisterValue(3)} @r4: {State.GetRegisterValue(4)}");
             Console.WriteLine($"Current Instruction at IP: {OpCodes[State.GetNextOpcode()].InsName}");
         } 

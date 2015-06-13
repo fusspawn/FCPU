@@ -6,23 +6,20 @@ using System.Threading.Tasks;
 
 namespace FCPU.Instructions
 {
-    public class WRITE_LOC
+    public class DEBUG
         : FCPUInstruction
     {
-        public WRITE_LOC()
+        public DEBUG()
         {
-            OpCode = 0x09;
+            OpCode = 0x10;
             ArgCount = 0;
-            InsName = "WRITE_LOC";
-            DocString = "WRITE_LOC: write value stored in @r0 to memory loc stored in @r1";
+            InsName = "DEBUG";
+            DocString = "DEBUG: output some usefull state to console";
         }
 
         public override void Execute(FCPUState State)
         {
-            int Ptr = State.GetRegisterValue(1);
-            int ValAtPtr = State.GetRegisterValue(0);
-            State.Memory[Ptr] = new FObject(false, ValAtPtr, State, Ptr);
-            State.IP += 1;
+            FCPU.DumpStateToConsole(State);
         }
 
         public override void Parse(FCPUState State, string[] Args)

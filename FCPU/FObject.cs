@@ -45,6 +45,9 @@ namespace FCPU
             Ptr = MemoryLoc;
         }
 
-
+        public override string ToString()
+        {
+            return $"Loc: {Ptr} Val: {_Value} Reg: {IsRegister}";
+        }
     }
 }

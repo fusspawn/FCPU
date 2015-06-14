@@ -13,6 +13,7 @@ namespace FCPU
         public FObject[] Memory = new FObject[1024];
         public Stack<int> Stack = new Stack<int>();
         public Dictionary<string, int> JumpTable;
+        public Dictionary<string, int> SymbolTable;
 
         public FCPUState() {
             for (int i = 0; i < Memory.Length; i++)
@@ -53,6 +54,14 @@ namespace FCPU
 
         public int PopStack() {
             return Stack.Pop();
+        }
+
+        public int GetSymbolValue(string Symbol) {
+            return Memory[SymbolTable[Symbol]].Value;
+        }
+
+        public void SetSymbolValue(string Symbol, int Value) {
+            Memory[SymbolTable[Symbol]].Value = Value;
         }
     }
 }

@@ -38,6 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ConsoleListBox = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.JumpTableDisplay = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CompileButton
@@ -63,7 +65,7 @@
             this.RegisterListBox.FormattingEnabled = true;
             this.RegisterListBox.Location = new System.Drawing.Point(420, 78);
             this.RegisterListBox.Name = "RegisterListBox";
-            this.RegisterListBox.Size = new System.Drawing.Size(419, 121);
+            this.RegisterListBox.Size = new System.Drawing.Size(328, 121);
             this.RegisterListBox.TabIndex = 2;
             // 
             // label1
@@ -77,7 +79,7 @@
             // 
             // StepCPUButton
             // 
-            this.StepCPUButton.Location = new System.Drawing.Point(754, 17);
+            this.StepCPUButton.Location = new System.Drawing.Point(592, 17);
             this.StepCPUButton.Name = "StepCPUButton";
             this.StepCPUButton.Size = new System.Drawing.Size(75, 23);
             this.StepCPUButton.TabIndex = 4;
@@ -100,7 +102,7 @@
             this.MemoryDisplay.FormattingEnabled = true;
             this.MemoryDisplay.Location = new System.Drawing.Point(420, 238);
             this.MemoryDisplay.Name = "MemoryDisplay";
-            this.MemoryDisplay.Size = new System.Drawing.Size(419, 199);
+            this.MemoryDisplay.Size = new System.Drawing.Size(618, 199);
             this.MemoryDisplay.TabIndex = 6;
             // 
             // label2
@@ -119,7 +121,7 @@
             this.ConsoleListBox.FormattingEnabled = true;
             this.ConsoleListBox.Location = new System.Drawing.Point(420, 472);
             this.ConsoleListBox.Name = "ConsoleListBox";
-            this.ConsoleListBox.Size = new System.Drawing.Size(419, 121);
+            this.ConsoleListBox.Size = new System.Drawing.Size(618, 121);
             this.ConsoleListBox.TabIndex = 8;
             // 
             // label3
@@ -131,11 +133,31 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Console";
             // 
+            // JumpTableDisplay
+            // 
+            this.JumpTableDisplay.FormattingEnabled = true;
+            this.JumpTableDisplay.Location = new System.Drawing.Point(764, 78);
+            this.JumpTableDisplay.Name = "JumpTableDisplay";
+            this.JumpTableDisplay.Size = new System.Drawing.Size(274, 121);
+            this.JumpTableDisplay.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(761, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Jump Table";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 605);
+            this.ClientSize = new System.Drawing.Size(1050, 605);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.JumpTableDisplay);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ConsoleListBox);
             this.Controls.Add(this.label2);
@@ -147,7 +169,7 @@
             this.Controls.Add(this.SourceCode);
             this.Controls.Add(this.CompileButton);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "FCPU Debugger";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -166,6 +188,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox ConsoleListBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox JumpTableDisplay;
+        private System.Windows.Forms.Label label4;
     }
 }
 

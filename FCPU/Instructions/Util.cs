@@ -19,5 +19,10 @@ namespace FCPU.Instructions
                 throw new Exception("Invalid Register Name: " + Val);
             }
         }
+
+        internal static bool IsSymbol(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

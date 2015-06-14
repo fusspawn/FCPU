@@ -33,15 +33,19 @@ namespace FCPUDebugger
         {
             RegisterListBox.Items.Clear();
             MemoryDisplay.Items.Clear();
+            JumpTableDisplay.Items.Clear();
 
             RegisterListBox.Items.Add($"IP: {CPU.State.IP}");
+
             try
             {
                 RegisterListBox.Items.Add($"NextInstruction: {FCPU.FCPU.OpCodes[CPU.State.GetNextOpcode()].InsName}");
             }
             catch (Exception E) {
                 RegisterListBox.Items.Add($"NextInstruction: Unknown.. Value: {CPU.State.GetNextOpcode()}");
+                var s = E.Message;
             }
+
             for (int i = 0; i < 5; i++) {
                 RegisterListBox.Items.Add($"@r{i}: {CPU.State.GetRegisterValue(i)}");
             }
@@ -50,12 +54,21 @@ namespace FCPUDebugger
                 MemoryDisplay.Items.Add(MemoryLoc);
             }
 
+            foreach (var kvp in CPU.State.JumpTable) {
+                JumpTableDisplay.Items.Add($"Label: {kvp.Key}, Loc: {kvp.Value}");
+            }
+
             MemoryDisplay.SelectedIndex = CPU.State.IP;
         }
 
         private void ResetCPUButton_Click(object sender, EventArgs e)
         {
             CPU.State.IP = 0;
+            CPU.State.SetRegisterValue(0, 0);
+            CPU.State.SetRegisterValue(1, 0);
+            CPU.State.SetRegisterValue(2, 0);
+            CPU.State.SetRegisterValue(3, 0);
+            CPU.State.SetRegisterValue(4, 0);
             UpdateDisplays();
             ConsoleListBox.Items.Clear();
         }
@@ -70,6 +83,11 @@ namespace FCPUDebugger
         {
             Console.SetOut(new ListBoxWriter(ConsoleListBox));
             ConsoleListBox.Items.Clear();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

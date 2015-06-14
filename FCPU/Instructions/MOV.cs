@@ -37,6 +37,8 @@ namespace FCPU.Instructions
             FObject Source;
             if (Util.IsRegister(Args[0]))
                 Source = new FObject(true, Util.RegisterIndexFromName(Args[0]), State, State.IP + 1);
+            else if(Util.IsSymbol(Args[0]))
+                Source = 
             else
                 Source = new FObject(false, int.Parse(Args[0]), State, State.IP + 1);
 

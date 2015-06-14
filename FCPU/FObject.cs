@@ -10,6 +10,7 @@ namespace FCPU
     {
         public int _Value;
         public bool IsRegister;
+        public bool IsSymbol;
         public FCPUState CPUState;
         public int Ptr;
 

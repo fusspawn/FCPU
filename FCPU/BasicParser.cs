@@ -11,11 +11,9 @@ namespace FCPU
         public static void LoadCode(FCPU CPU, string Code) {
             int LineNumber = 0;
             string[] lines = Code.Split(Environment.NewLine.ToCharArray());
-
             foreach (string line in lines) {
                 if (string.IsNullOrEmpty(line))
                     continue;
-
                 LineNumber += 1;
                 line.Trim();
                 try {
@@ -26,7 +24,6 @@ namespace FCPU
                     throw new Exception("ParseException: Line: " + LineNumber + " Error: " + E.Message + " Line: " + line);
                 }
             }
-
             CPU.State.IP = 0;
         }
     }

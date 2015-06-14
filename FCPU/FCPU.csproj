@@ -45,6 +45,10 @@
     <Compile Include="FCPUInstruction.cs" />
     <Compile Include="FCPUState.cs" />
     <Compile Include="FObject.cs" />
+    <Compile Include="Instructions\RET.cs" />
+    <Compile Include="Instructions\JMP.cs" />
+    <Compile Include="Instructions\LABEL.cs" />
+    <Compile Include="Instructions\CAST_INT.cs" />
     <Compile Include="Instructions\CAST_CHAR.cs" />
     <Compile Include="Instructions\DIV.cs" />
     <Compile Include="Instructions\DEBUG.cs" />

@@ -10,12 +10,14 @@ namespace FCPU
     {
         public int IP = 0;
         public int[] Registers = new int[5];
-        public FObject[] Memory = new FObject[512];
+        public FObject[] Memory = new FObject[1024];
         public Stack<int> Stack = new Stack<int>();
+        public Dictionary<string, int> JumpTable;
 
         public FCPUState() {
             for (int i = 0; i < Memory.Length; i++)
                 Memory[i] = new FObject(false, 0x00, this, i);
+            JumpTable = new Dictionary<string, int>();
         }
 
         public int GetNextOpcode() {
@@ -27,7 +29,7 @@ namespace FCPU
             return Registers[Index];
         }
 
-        internal void SetRegisterValue(int index, int value)
+        public void SetRegisterValue(int index, int value)
         {
             Registers[index] = value;
             //Console.WriteLine("Wrote Value: " + value + " to register: @r" + index);

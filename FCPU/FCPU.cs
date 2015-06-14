@@ -11,11 +11,9 @@ namespace FCPU
     {
         public FCPUState State;
         public static Dictionary<int, FCPUInstruction> OpCodes;
-        public static Dictionary<string, int> JumpTable;
 
         public FCPU(FCPUState State) {
             this.State = State;
-            JumpTable = new Dictionary<string, int>();
             OpCodes = new Dictionary<int, FCPUInstruction>();
             RegisterInstruction(new NOP());
             RegisterInstruction(new MOV());
@@ -29,6 +27,9 @@ namespace FCPU
             RegisterInstruction(new WRITE_LOC());
             RegisterInstruction(new DEBUG());
             RegisterInstruction(new CAST_CHAR());
+            RegisterInstruction(new LABEL());
+            RegisterInstruction(new JMP());
+            RegisterInstruction(new RET());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {

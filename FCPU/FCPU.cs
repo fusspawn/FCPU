@@ -11,10 +11,12 @@ namespace FCPU
     {
         public FCPUState State;
         public static Dictionary<int, FCPUInstruction> OpCodes;
+        public static Dictionary<int, Action<FCPUState>> InterruptHandlers;
 
         public FCPU(FCPUState State) {
             this.State = State;
             OpCodes = new Dictionary<int, FCPUInstruction>();
+            InterruptHandlers = new Dictionary<int, Action<FCPUState>>();
             RegisterInstruction(new NOP());
             RegisterInstruction(new MOV());
             RegisterInstruction(new ADD());
@@ -31,6 +33,7 @@ namespace FCPU
             RegisterInstruction(new JMP());
             RegisterInstruction(new RET());
             RegisterInstruction(new VAR());
+            RegisterInstruction(new INT());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {

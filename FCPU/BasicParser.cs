@@ -8,7 +8,7 @@ namespace FCPU
 {
     public class BasicParser
     {
-        public static void LoadCode(FCPU CPU, string Code) {
+        public static void LoadCode(FCPU CPU, string Code, bool ResetIP=true) {
             int LineNumber = 0;
             string[] lines = Code.Split(Environment.NewLine.ToCharArray());
             foreach (string line in lines)
@@ -20,16 +20,16 @@ namespace FCPU
                 try {
                     string[] Parts = line.Split(' ');
                     string[] Args = new ArraySegment<string>(Parts, 1, Parts.Length - 1).ToArray();
-                    for (int i = 0;  i < Args.Length; i++)
-                    {
+                    for (int i = 0;  i < Args.Length; i++) {
                         Args[i] = Args[i].Trim();
                     }
-                    CPU.GetInstructionByName(Parts[0]).Parse(CPU.State, Args);
+                    CPU.GetInstructionByName(Parts[0].Trim()).Parse(CPU.State, Args);
                } catch (Exception E) {
                     throw new Exception("ParseException: Line: " + LineNumber + " Error: " + E.Message + " Line: " + line);
                }
             }
-            CPU.State.IP = 0;
+            if(ResetIP)
+                CPU.State.IP = 0;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace FCPU.Instructions
         : FCPUInstruction
     {
         public VAR() {
-            OpCode = 0x16;
+            OpCode = 16;
             ArgCount = 1;
             InsName = "VAR";
             DocString = "VAR: Alloc variable store in memory";
@@ -24,7 +24,7 @@ namespace FCPU.Instructions
         {
             State.Memory[State.IP] = new FObject(false, this.OpCode, State, State.IP);
             State.IP += 1;
-            State.Memory[State.IP] = new FObject(false, 0, State, State.IP);
+            State.Memory[State.IP] = new FObject(false, 0, State, State.IP, true);
             State.SymbolTable.Add(Args[0], State.IP);
             State.IP += 1;
         }

@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public PRINT_STR()
         {
-            OpCode = 0x07;
+            OpCode = 7;
             ArgCount = 0;
             InsName = "PRINT_STR";
             DocString = "PRINT_STR: Prints the results of LOAD_STR to console. LOAD_STR MUST!! be called as the instruction Prior.";

@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public DEBUG()
         {
-            OpCode = 0x10;
+            OpCode = 10;
             ArgCount = 0;
             InsName = "DEBUG";
             DocString = "DEBUG: output some usefull state to console";

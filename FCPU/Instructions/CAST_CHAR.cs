@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public CAST_CHAR()
         {
-            OpCode = 0x11;
+            OpCode = 11;
             ArgCount = 0;
             InsName = "CAST_CHAR";
             DocString = "CAST_CHAR: take the value in @r0 convert it to its character display code, and store that in @r1";

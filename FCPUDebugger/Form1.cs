@@ -34,6 +34,7 @@ namespace FCPUDebugger
             RegisterListBox.Items.Clear();
             MemoryDisplay.Items.Clear();
             JumpTableDisplay.Items.Clear();
+            SymbolTableDisplay.Items.Clear();
 
             RegisterListBox.Items.Add($"IP: {CPU.State.IP}");
 
@@ -58,17 +59,16 @@ namespace FCPUDebugger
                 JumpTableDisplay.Items.Add($"Label: {kvp.Key}, Loc: {kvp.Value}");
             }
 
+            foreach (var kvp in CPU.State.SymbolTable) {
+                SymbolTableDisplay.Items.Add($"Label: {kvp.Key}, Ptr: {kvp.Value} Val: {CPU.State.Memory[kvp.Value].Value}");
+            }
+
             MemoryDisplay.SelectedIndex = CPU.State.IP;
         }
 
         private void ResetCPUButton_Click(object sender, EventArgs e)
         {
-            CPU.State.IP = 0;
-            CPU.State.SetRegisterValue(0, 0);
-            CPU.State.SetRegisterValue(1, 0);
-            CPU.State.SetRegisterValue(2, 0);
-            CPU.State.SetRegisterValue(3, 0);
-            CPU.State.SetRegisterValue(4, 0);
+            CPU = new FCPU.FCPU(new FCPUState());
             UpdateDisplays();
             ConsoleListBox.Items.Clear();
         }
@@ -86,6 +86,16 @@ namespace FCPUDebugger
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

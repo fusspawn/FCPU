@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public WRITE_LOC()
         {
-            OpCode = 0x09;
+            OpCode = 9;
             ArgCount = 0;
             InsName = "WRITE_LOC";
             DocString = "WRITE_LOC: write value stored in @r0 to memory loc stored in @r1";

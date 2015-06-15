@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public ADD()
         {
-            OpCode = 0x02;
+            OpCode = 2;
             ArgCount = 0;
             InsName = "ADD";
             DocString = "ADD: add the first two values on the stack. result goes in r0";

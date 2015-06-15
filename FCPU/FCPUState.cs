@@ -19,6 +19,7 @@ namespace FCPU
             for (int i = 0; i < Memory.Length; i++)
                 Memory[i] = new FObject(false, 0x00, this, i);
             JumpTable = new Dictionary<string, int>();
+            SymbolTable = new Dictionary<string, int>();
         }
 
         public int GetNextOpcode() {

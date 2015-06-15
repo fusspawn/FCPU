@@ -40,6 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.JumpTableDisplay = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.symbollabel = new System.Windows.Forms.Label();
+            this.SymbolTableDisplay = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // CompileButton
@@ -65,7 +67,7 @@
             this.RegisterListBox.FormattingEnabled = true;
             this.RegisterListBox.Location = new System.Drawing.Point(420, 78);
             this.RegisterListBox.Name = "RegisterListBox";
-            this.RegisterListBox.Size = new System.Drawing.Size(328, 121);
+            this.RegisterListBox.Size = new System.Drawing.Size(275, 121);
             this.RegisterListBox.TabIndex = 2;
             // 
             // label1
@@ -102,7 +104,7 @@
             this.MemoryDisplay.FormattingEnabled = true;
             this.MemoryDisplay.Location = new System.Drawing.Point(420, 238);
             this.MemoryDisplay.Name = "MemoryDisplay";
-            this.MemoryDisplay.Size = new System.Drawing.Size(618, 199);
+            this.MemoryDisplay.Size = new System.Drawing.Size(275, 199);
             this.MemoryDisplay.TabIndex = 6;
             // 
             // label2
@@ -136,26 +138,47 @@
             // JumpTableDisplay
             // 
             this.JumpTableDisplay.FormattingEnabled = true;
-            this.JumpTableDisplay.Location = new System.Drawing.Point(764, 78);
+            this.JumpTableDisplay.Location = new System.Drawing.Point(715, 78);
             this.JumpTableDisplay.Name = "JumpTableDisplay";
-            this.JumpTableDisplay.Size = new System.Drawing.Size(274, 121);
+            this.JumpTableDisplay.Size = new System.Drawing.Size(323, 121);
             this.JumpTableDisplay.TabIndex = 10;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(761, 62);
+            this.label4.Location = new System.Drawing.Point(712, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Jump Table";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
+            // symbollabel
+            // 
+            this.symbollabel.AutoSize = true;
+            this.symbollabel.Location = new System.Drawing.Point(712, 222);
+            this.symbollabel.Name = "symbollabel";
+            this.symbollabel.Size = new System.Drawing.Size(71, 13);
+            this.symbollabel.TabIndex = 13;
+            this.symbollabel.Text = "Symbol Table";
+            this.symbollabel.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // SymbolTableDisplay
+            // 
+            this.SymbolTableDisplay.FormattingEnabled = true;
+            this.SymbolTableDisplay.Location = new System.Drawing.Point(715, 238);
+            this.SymbolTableDisplay.Name = "SymbolTableDisplay";
+            this.SymbolTableDisplay.Size = new System.Drawing.Size(323, 199);
+            this.SymbolTableDisplay.TabIndex = 12;
+            this.SymbolTableDisplay.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 605);
+            this.Controls.Add(this.symbollabel);
+            this.Controls.Add(this.SymbolTableDisplay);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.JumpTableDisplay);
             this.Controls.Add(this.label3);
@@ -190,6 +213,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox JumpTableDisplay;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label symbollabel;
+        private System.Windows.Forms.ListBox SymbolTableDisplay;
     }
 }
 

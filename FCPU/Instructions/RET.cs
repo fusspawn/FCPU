@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public RET()
         {
-            OpCode = 0x15;
+            OpCode = 15;
             ArgCount = 0;
             InsName = "RET";
             DocString = "RET: Return to last Jump point";

@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public CAST_INT()
         {
-            OpCode = 0x12;
+            OpCode = 12;
             ArgCount = 0;
             InsName = "CAST_INT";
             DocString = "CAST_INT: take the value in @r0 convert it to its int value, and store that in @r1";

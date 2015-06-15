@@ -30,6 +30,7 @@ namespace FCPU
             RegisterInstruction(new LABEL());
             RegisterInstruction(new JMP());
             RegisterInstruction(new RET());
+            RegisterInstruction(new VAR());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {

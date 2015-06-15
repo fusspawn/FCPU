@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public LABEL()
         {
-            OpCode = 0x13;
+            OpCode = 13;
             ArgCount = 1;
             InsName = "LABEL";
             DocString = "LABEL: jump table refrence opcode";

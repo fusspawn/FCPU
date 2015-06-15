@@ -17,9 +17,9 @@ namespace FCPU
         public int Value
         {
             get {
-                 if (IsRegister)
+                if (IsRegister)
                     return CPUState.GetRegisterValue(_Value);
-                 else
+                else
                     return _Value; 
             }
 
@@ -39,16 +39,17 @@ namespace FCPU
 
         
 
-        public FObject(bool Reg, int Val, FCPUState CPU, int MemoryLoc) {
+        public FObject(bool Reg, int Val, FCPUState CPU, int MemoryLoc, bool isSymbol=false) {
             IsRegister = Reg;
             _Value = Val;
             CPUState = CPU;
             Ptr = MemoryLoc;
+            IsSymbol = isSymbol;
         }
 
         public override string ToString()
         {
-            return $"Loc: {Ptr} Val: {_Value} Reg: {IsRegister}";
+            return $"Loc: {Ptr} Val: {_Value} Reg: {IsRegister} IsSym: {IsSymbol}";
         }
     }
 }

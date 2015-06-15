@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public JMP()
         {
-            OpCode = 0x14;
+            OpCode = 14;
             ArgCount = 1;
             InsName = "JMP";
             DocString = "JMP: Jump to Label";

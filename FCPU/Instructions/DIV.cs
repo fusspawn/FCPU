@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public DIV()
         {
-            OpCode = 0x03;
+            OpCode = 3;
             ArgCount = 0;
             InsName = "DIV";
             DocString = "DIV: add the first two values on the stack. result goes in r0";

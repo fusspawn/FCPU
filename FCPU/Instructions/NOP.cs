@@ -10,7 +10,7 @@ namespace FCPU.Instructions
         : FCPUInstruction
     {
         public NOP() {
-            OpCode = 0x00;
+            OpCode = 0;
             ArgCount = 0;
             InsName = "NOP";
             DocString = "NOP: No Operation. Waste a cycle doing nothing";

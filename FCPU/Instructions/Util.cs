@@ -16,13 +16,13 @@ namespace FCPU.Instructions
                 return outval;
             }
             else {
-                throw new Exception("Invalid Register Name: " + Val);
+                throw new Exception("Invalid Register Name: " + Val.Substring(2, 1));
             }
         }
 
         internal static bool IsSymbol(string v)
         {
-            throw new NotImplementedException();
+            return v.StartsWith("$");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public LOAD_STR()
         {
-            OpCode = 0x06;
+            OpCode = 6;
             ArgCount = 0;
             InsName = "LOAD_STR";
             DocString = "LOAD_STR: Load string constant into memory. puts str_len in @r0 and str_start_location in @r1";

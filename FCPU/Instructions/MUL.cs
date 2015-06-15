@@ -11,7 +11,7 @@ namespace FCPU.Instructions
     {
         public MUL()
         {
-            OpCode = 0x04;
+            OpCode = 4;
             ArgCount = 0;
             InsName = "MUL";
             DocString = "MUL: add the first two values on the stack. result goes in r0";

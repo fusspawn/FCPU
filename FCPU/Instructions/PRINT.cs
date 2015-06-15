@@ -10,7 +10,7 @@ namespace FCPU.Instructions
         : FCPUInstruction
     {
         public PRINT() {
-            OpCode = 0x05;
+            OpCode = 5;
             ArgCount = 0;
             InsName = "PRINT";
             DocString = "PRINT: Print the character in @r0 to the console";

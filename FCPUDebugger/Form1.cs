@@ -19,6 +19,16 @@ namespace FCPUDebugger
         public Form1()
         {
             InitializeComponent();
+
+            FCPU.FCPU.InterruptHandlers[0] = (State) =>
+            {
+                State.IP = 0; // ResetCPU
+            };
+
+            FCPU.FCPU.InterruptHandlers[1] = (State) =>
+            {
+                Console.WriteLine("Interrupt v1");
+            };
         }
 
         private void CompileButton_Click(object sender, EventArgs e)
@@ -68,7 +78,7 @@ namespace FCPUDebugger
 
         private void ResetCPUButton_Click(object sender, EventArgs e)
         {
-            CPU = new FCPU.FCPU(new FCPUState());
+            CPU.State = new FCPUState();
             UpdateDisplays();
             ConsoleListBox.Items.Clear();
         }

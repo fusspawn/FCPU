@@ -85,6 +85,10 @@
       <Project>{af3d8bb5-91a4-4e90-b91b-26dd2b7238ca}</Project>
       <Name>FCPU</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Parser\Parser.csproj">
+      <Project>{18a9019f-ffb5-4e18-966c-8841eed265ec}</Project>
+      <Name>Parser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

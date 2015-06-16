@@ -34,6 +34,11 @@ namespace FCPU
             RegisterInstruction(new RET());
             RegisterInstruction(new VAR());
             RegisterInstruction(new INT());
+            RegisterInstruction(new JNZ());
+            RegisterInstruction(new JGZ());
+            RegisterInstruction(new JLZ());
+            RegisterInstruction(new JEZ());
+            RegisterInstruction(new RAND());
         }
 
         public void RegisterInstruction(FCPUInstruction Instruction) {

@@ -23,10 +23,10 @@ namespace FCPU.Instructions
 
         public override void Parse(FCPUState State, string[] Args)
         {
-            State.JumpTable.Add(Args[0], State.IP);
+            State.JumpTable[Args[0]] = State.IP;
             State.Memory[State.IP] = new FObject(false, this.OpCode, State, State.IP);
             State.IP += 1;
-            State.Memory[State.IP] = new FObject(false, 0x00, State, State.IP);
+            State.Memory[State.IP] = new FObject(false, new NOP().OpCode, State, State.IP);
             State.IP += 1;
         }
     }

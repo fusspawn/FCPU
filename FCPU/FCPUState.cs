@@ -15,8 +15,9 @@ namespace FCPU
         public Dictionary<string, int> JumpTable;
         public Dictionary<string, int> SymbolTable;
 
-        public FCPUState() {
-            for (int i = 0; i < Memory.Length; i++)
+        public FCPUState(int MemorySize = 2048) {
+            Memory = new FObject[MemorySize];
+            for (int i = 0; i < MemorySize; i++)
                 Memory[i] = new FObject(false, 0x00, this, i);
             JumpTable = new Dictionary<string, int>();
             SymbolTable = new Dictionary<string, int>();

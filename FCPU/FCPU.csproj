@@ -40,11 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicParser.cs" />
     <Compile Include="FCPU.cs" />
     <Compile Include="FCPUInstruction.cs" />
     <Compile Include="FCPUState.cs" />
     <Compile Include="FObject.cs" />
+    <Compile Include="Instructions\RAND.cs" />
+    <Compile Include="Instructions\JLZ.cs" />
+    <Compile Include="Instructions\JGZ.cs" />
+    <Compile Include="Instructions\JEZ.cs" />
+    <Compile Include="Instructions\JNZ.cs" />
     <Compile Include="Instructions\INT.cs" />
     <Compile Include="Instructions\VAR.cs" />
     <Compile Include="Instructions\RET.cs" />

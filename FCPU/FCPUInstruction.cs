@@ -16,6 +16,14 @@ namespace FCPU
         public virtual void Parse(FCPUState State, string[] Args) { }
         public virtual void Execute(FCPUState State) { }
 
+        public virtual void Preproc(FCPUState State, string[] Args) {
+            State.IP += 1 + ArgCount;
+        }
+
+        public virtual void Postproc(FCPUState State, string[] Args) {
+            State.IP += 1 + ArgCount;
+        }
+
         public void LoadArgs(FCPUState State)
         {
             Args = new int[ArgCount];

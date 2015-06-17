@@ -44,6 +44,7 @@
     <Compile Include="FCPUInstruction.cs" />
     <Compile Include="FCPUState.cs" />
     <Compile Include="FObject.cs" />
+    <Compile Include="Instructions\SUB.cs" />
     <Compile Include="Instructions\RAND.cs" />
     <Compile Include="Instructions\JLZ.cs" />
     <Compile Include="Instructions\JGZ.cs" />

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.CompileButton = new System.Windows.Forms.Button();
-            this.SourceCode = new System.Windows.Forms.RichTextBox();
             this.RegisterListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.StepCPUButton = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -64,14 +64,6 @@
             this.CompileButton.Text = "Compile";
             this.CompileButton.UseVisualStyleBackColor = true;
             this.CompileButton.Click += new System.EventHandler(this.CompileButton_Click);
-            // 
-            // SourceCode
-            // 
-            this.SourceCode.Location = new System.Drawing.Point(13, 78);
-            this.SourceCode.Name = "SourceCode";
-            this.SourceCode.Size = new System.Drawing.Size(496, 515);
-            this.SourceCode.TabIndex = 1;
-            this.SourceCode.Text = "";
             // 
             // RegisterListBox
             // 
@@ -218,7 +210,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1190, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1186, 24);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -234,13 +226,13 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // textBox1
@@ -260,11 +252,21 @@
             this.label5.TabIndex = 19;
             this.label5.Text = "Instruction Count";
             // 
+            // elementHost1
+            // 
+            this.elementHost1.Location = new System.Drawing.Point(0, 78);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(509, 515);
+            this.elementHost1.TabIndex = 20;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = null;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 599);
+            this.ClientSize = new System.Drawing.Size(1186, 599);
+            this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label_frame_buffer);
@@ -282,7 +284,6 @@
             this.Controls.Add(this.StepCPUButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RegisterListBox);
-            this.Controls.Add(this.SourceCode);
             this.Controls.Add(this.CompileButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -300,7 +301,6 @@
         #endregion
 
         private System.Windows.Forms.Button CompileButton;
-        private System.Windows.Forms.RichTextBox SourceCode;
         private System.Windows.Forms.ListBox RegisterListBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button StepCPUButton;
@@ -322,6 +322,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
     }
 }
 

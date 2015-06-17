@@ -13,7 +13,8 @@ namespace FCPU
         public string DocString;
         public int[] Args;
 
-        public virtual void Parse(FCPUState State, string[] Args) { }
+        public virtual void Parse(FCPUState State, string[] Args) {
+        }
         public virtual void Execute(FCPUState State) { }
 
         public virtual void Preproc(FCPUState State, string[] Args) {

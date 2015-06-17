@@ -45,8 +45,15 @@ namespace FCPU.Instructions
 
         public override void Postproc(FCPUState State, string[] Args)
         {
-            if (ToFix.ContainsKey(State.IP + 1)) {
-                State.Memory[State.IP + 1]._Value = State.JumpTable[Args[0]];
+            var Current = State.Memory[State.IP + 1];
+
+            if (!(Current.Value > 0)) {
+                Current.Value = State.JumpTable[Args[0]];
+                State.Memory[Current.Ptr] = Current;
+                Console.WriteLine("Fixed JMP Opcode");
+            } else
+            {
+                Console.WriteLine($"JMP_TABLE_OKAY: No need to fix");
             }
 
             base.Postproc(State, Args);

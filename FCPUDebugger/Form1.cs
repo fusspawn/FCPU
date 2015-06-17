@@ -8,7 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FCPU;
-
+using System.IO;
+using System.Xml;
+using System.Windows.Forms.Integration;
+using ICSharpCode.AvalonEdit.CodeCompletion;
+using System.Windows.Input;
+using System.Windows.Documents;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
+using ICSharpCode.AvalonEdit.Highlighting;
 
 namespace FCPUDebugger
 {
@@ -21,11 +29,12 @@ namespace FCPUDebugger
             get { return (FRAME_BUFFER_WIDTH * FRAME_BUFFER_HEIGHT) * 3; }
         }
 
+        ICSharpCode.AvalonEdit.TextEditor textEditor;
         FCPU.FCPU CPU = new FCPU.FCPU(new FCPUState(2048 + FRAME_BUFFER_LENGTH));
 
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
+            AddEditorControl();
 
             FCPU.FCPU.InterruptHandlers[0] = (State) =>
             {
@@ -43,12 +52,90 @@ namespace FCPUDebugger
             };
         }
 
+
+        XshdSyntaxDefinition xshd;
+        private void AddEditorControl()
+        {
+            textEditor = new ICSharpCode.AvalonEdit.TextEditor();
+            textEditor.ShowLineNumbers = true;
+            textEditor.FontFamily = new System.Windows.Media.FontFamily("Consolas");
+            textEditor.FontSize = 12.75f;
+            textEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
+            textEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
+
+            if (File.Exists("FUASM.xshd"))
+            {
+                Stream xshd_stream = File.OpenRead("FUASM.xshd");
+                XmlTextReader xshd_reader = new XmlTextReader(xshd_stream);
+                xshd = HighlightingLoader.LoadXshd(xshd_reader);
+                updateStandardParametersList(); // Runtime load in OPCodes
+                var custom = HighlightingLoader.Load(xshd, HighlightingManager.Instance);
+
+                // Apply the new syntax highlighting definition.
+                textEditor.SyntaxHighlighting = custom;
+                xshd_reader.Close();
+                xshd_stream.Close();
+            }
+
+            //Host the WPF AvalonEdiot control in a Winform ElementHost control
+            elementHost1.Child = textEditor;
+        }
+
+        void updateStandardParametersList()
+        {
+            XshdKeywords newKeyWords = new XshdKeywords();
+            newKeyWords.ColorReference = new XshdReference<XshdColor>(null, "OpCodes");
+
+            (from item in FCPU.FCPU.OpCodes
+             select item.Value.InsName).ToList().ForEach(newKeyWords.Words.Add);
+
+            XshdRuleSet mainRuleSet = xshd.Elements.OfType<XshdRuleSet>().Where(o => string.IsNullOrEmpty(o.Name)).First();
+            mainRuleSet.Elements.Add(newKeyWords);
+        }
+
+        CompletionWindow completionWindow;
+        void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        {
+            var current_word = TextUtilities.GetNextCaretPosition(textEditor.Document, textEditor.CaretOffset, LogicalDirection.Backward, CaretPositioningMode.WordStart);
+            // Open code completion after the user has pressed dot:
+            completionWindow = new CompletionWindow(textEditor.TextArea);
+            current_word = Math.Max(0, current_word);
+            completionWindow.StartOffset = current_word;
+            IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
+            var valid_options = (from item in FCPU.FCPU.OpCodes where item.Value.InsName.StartsWith(    textEditor.Text.Substring(  current_word,
+                                                                                                                                    Math.Max(0, textEditor.CaretOffset - current_word)))
+                                 select new MyCompletionData(item.Value.InsName, item.Value.DocString)).ToList();
+            if (valid_options.Count > 0)
+            {
+                valid_options.ForEach(data.Add);
+                completionWindow.Show();
+                completionWindow.Closed += delegate
+                {
+                    completionWindow = null;
+                };
+            }
+        }
+
+        void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text.Length > 0 && completionWindow != null)
+            {
+                if (!char.IsLetterOrDigit(e.Text[0]))
+                {
+                    // Whenever a non-letter is typed while the completion window is open,
+                    // insert the currently selected element.
+                    completionWindow.CompletionList.RequestInsertion(e);
+                }
+            }
+            // Do not set e.Handled=true.
+            // We still want to insert the character that was typed.
+        }
+
         private void CompileButton_Click(object sender, EventArgs e)
         {
             CPU.State = new FCPUState(2048 + FRAME_BUFFER_LENGTH);
-            BasicParser.LoadCodeV2(CPU, SourceCode.Text);
+            BasicParser.LoadCodeV2(CPU, textEditor.Text);
             UpdateDisplays();
-            ConsoleListBox.Items.Clear();
         }
 
         private void UpdateDisplays()
@@ -79,7 +166,8 @@ namespace FCPUDebugger
             {
                 foreach (FObject MemoryLoc in CPU.State.Memory)
                 {
-                    MemoryDisplay.Items.Add(MemoryLoc);
+                    if(MemoryLoc.Ptr < 2048)
+                        MemoryDisplay.Items.Add(MemoryLoc);
                 }
             }
 
@@ -112,12 +200,16 @@ namespace FCPUDebugger
                     CPU.ExecuteStep();
                     Application.DoEvents();
                 }
+
+                UpdateDisplays();
+                UpdateFrameBuffer();
             }
             catch (Exception E) {
-                Console.WriteLine(E.Message);
+                ConsoleColor Old = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Runtime Error: " + E.Message);
+                Console.ForegroundColor = Old;
             }
-            UpdateDisplays();
-            UpdateFrameBuffer();
         }
 
         private void UpdateFrameBuffer()
@@ -149,7 +241,6 @@ namespace FCPUDebugger
         private void Form1_Load(object sender, EventArgs e)
         {
             Console.SetOut(new ListBoxWriter(ConsoleListBox));
-            ConsoleListBox.Items.Clear();
         }
 
         private void label4_Click(object sender, EventArgs e)

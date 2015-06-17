@@ -1,0 +1,28 @@
+﻿<SyntaxDefinition name="FUASM"
+        xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+    <Color name="Register" foreground="Red" />
+    <Color name="Variables" foreground="Green" />
+    <Color name="OpCodes" foreground="Purple" />
+    <!-- This is the main ruleset. -->
+    <RuleSet>
+        
+        <!-- Digits -->
+        <Rule foreground="Blue">
+             \b0[xX][0-9a-fA-F]+  # hex number
+        |    \b
+            (    \d+(\.[0-9]+)?   #number with optional floating point
+            |    \.[0-9]+         #or just starting with floating point
+            )
+            ([eE][+-]?[0-9]+)? # optional exponent
+        </Rule>
+    
+        <Span color="Register">
+            <Begin>\@r\d</Begin>
+            <End>\s</End>
+        </Span>
+
+      <Rule color="Variables">
+        \$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)
+      </Rule>
+    </RuleSet>
+</SyntaxDefinition>

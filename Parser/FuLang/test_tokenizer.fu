@@ -1,0 +1,6 @@
+﻿function printtext(name){
+    print(name);
+}
+test = 123;
+rawr = test * 3;
+printtext(rawr);

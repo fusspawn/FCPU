@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Parser</RootNamespace>
     <AssemblyName>Parser</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicParser.cs" />
+    <Compile Include="FuLang\Ast\AstNode.cs" />
+    <Compile Include="FuLang\Tokens\Tokenizer.cs" />
+    <Compile Include="FuLang\Tokens\Token.cs" />
+    <Compile Include="FuLang\Tokens\TokenType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,7 +54,15 @@
       <Name>FCPU</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FuLang\test_tokenizer.fu">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "E:\Code\FSpace\FCPU\Parser\bin\Debug\Parser.dll" "E:\Code\FCPU3D\FCPU3D\Assets\Plugins\Parser.dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
